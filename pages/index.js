@@ -1,8 +1,8 @@
+import { client } from "../libs/client";
+import Link from "next/link";
+
 import Header from './header'
 import styles from '../styles/Home.module.css';
-import { client } from "../libs/client";
-
-import Blog from './blog'
 
 export default function Home({ blog }) {
   return (
@@ -43,8 +43,23 @@ export default function Home({ blog }) {
           </div>
         </div>
       </div >
-      <Blog blog={blog}/>
+
+{/*ブログ表示↓*/}
+      <div>
+        <ul>
+          {blog.map((blog) => (
+            <li key={blog.id}>
+              <Link href={`/blog/${blog.id}`}>
+                <a>{blog.title}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div >
+{/*ブログ表示↑*/}
+
     </div>
+
   );
 }
 
