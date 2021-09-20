@@ -67,9 +67,11 @@ export default function Home({ blog }) {
       <div>
         <ul>
           {blog.map((blog) => (
-            <Link href={`/blog/${blog.id}`}>
-              <a><img src={blog.image.url} alt="" /></a>
-            </Link>
+            <li key={blog.id}>
+              <Link href={`/blog/${blog.id}`}>
+                <a><img src={blog.image.url} alt="" /></a>
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
