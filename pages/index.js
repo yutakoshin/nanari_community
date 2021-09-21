@@ -64,6 +64,7 @@ export default function Home({ blog }) {
 
       </div >
       {/*ブログ表示↓*/}
+      <p>Our Story</p>
       <div>
         <ul>
           {blog.map((blog) => (
@@ -76,7 +77,6 @@ export default function Home({ blog }) {
         </ul>
       </div>
       {/*ブログ表示↑*/}
-
     </div>
 
   );
