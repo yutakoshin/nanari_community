@@ -1,10 +1,30 @@
+import { useState, useEffect } from 'react';
+
+import Header from './header';
+
+import firebase from 'firebase';
+import '../components/fire';
+
+
 import { client } from "../libs/client";
 import Link from "next/link";
-import Image from 'next/image'
-import Header from './header';
+import Image from 'next/image';
+
 import styles from '../styles/Home.module.css';
 
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+
 export default function Home({ blog }) {
+  {/* 認証↓ */ }
+  const [message, setMessage] = useState('wait...')
+
+  useEffect(() => {
+    auth.signInWithPopup(provider).then(result => {
+      setMessage('logined: ' + result.user.displayName)
+    })
+  }, [])
+  {/* 認証↑ */ }
   return (
     <div className="container mt-3">
       <div className={styles.OverallNanari}>
@@ -77,6 +97,18 @@ export default function Home({ blog }) {
         </ul>
       </div>
       {/*ブログ表示↑*/}
+
+      {/* 認証↓ */}
+      <div className="alert alert-primary text-center">
+        <h5 className="mb-4">{message}</h5>
+        <p className="h6 text-left">
+          uid: {auth.currentUser != null ? auth.currentUser.uid : ''}<br />
+          displayName: {auth.currentUser != null ? auth.currentUser.displayName : ''}<br />
+          email: {auth.currentUser != null ? auth.currentUser.email : ''}<br />
+          phoneNumber: {auth.currentUser != null ? auth.currentUser.phoneNumber : ''}
+        </p>
+      </div>
+      {/* 認証↑ */}
     </div>
 
   );
