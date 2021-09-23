@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Header from './header';
+import Footer from './Footer'
 
 import firebase from 'firebase';
 import '../components/fire';
@@ -17,13 +18,13 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 export default function Home({ blog }) {
   {/* 認証↓ */ }
-  const [message, setMessage] = useState('wait...')
+  {/*const [message, setMessage] = useState('wait...')
 
   useEffect(() => {
     auth.signInWithPopup(provider).then(result => {
       setMessage('logined: ' + result.user.displayName)
     })
-  }, [])
+  }, [])*/}
   {/* 認証↑ */ }
   return (
     <div className="container mt-3">
@@ -32,7 +33,7 @@ export default function Home({ blog }) {
         <style jsx>{`
         .card-img-overlay{
           padding: 0;
-          top: 40%;
+          top: 20%;
           left: 20%;
         }
       `}</style>
@@ -49,42 +50,55 @@ export default function Home({ blog }) {
             </div>
           </div>
         </div>
-        <div className={styles.ImgContainer}>
-          <img src="/static/S__6225945.jpg" alt="" />
-          <p>　もっとやりたいことがあるのに<br />そんな簡単に進路なんて変えられない<br />
-            <br /><br />　　　　　　　　　　大学に行くのが辛い。</p>
-          <p></p>
+        <div className="row">
+          <div className="col">
+            <img src="/static/S__6225945.jpg" className={styles.gazo1} alt="" />
+            <div >
+              <br /><br /><p className={styles.bun1}>もっとやりたいことがあるのに</p>
+              <p className={styles.bun1}>そんな簡単に進路なんて変えられない</p>
+              <br /><p className={styles.bun2}>大学に行くのが辛い。</p>
+            </div>
+          </div>
+          <div className="col">
+            <div className="card">
+              <div className="card-img img-responsive">
+                <img src="/static/S__6225930.jpg" className={styles.gazo2} alt="" />
+              </div>
+              <div className="card-img-overlay">
+                <p>自分には向いていない。そう思った。</p>
+                <p>でも、やめたら</p>
+                <p>ここまで頑張ってきた努力が無駄になるのかな。</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className={styles.ImgContainer}>
-          <img src="/static/S__6225930.jpg" alt="" />
-          <p>　　自分にはむいていない。そう思った。<br />
-            でも、やめたら<br />
-            ここまで頑張ってきた努力が無駄になるのかな。</p>
+        <div className={styles.block1}>
+          <img src="/static/S__6225932.jpg" className={styles.gazo3} alt="" />
+          <p className={styles.bun3}>あれ、俺こんなことしたかったんだっけ。</p>
         </div>
-        <div className={styles.ImgContainer}>
-          <img src="/static/S__6225932.jpg" alt="" />
-          <p>あれ、俺こんなことしたかったんだっけ。</p>
+        <div className="row">
+          <div className="col">
+            <p>nanariとは
+              <br />Nanariは、大学で自分の夢を見失ってしまった学生
+              <br />人間関係がこじれて大学にいけなくなってしまった学生<br />
+              <br />自分のやりたいことがみつかったのに
+              <br />大学生活に追われて動きが取れない学生<br />
+              <br />今の環境が自分に向いてないと気がついたのに、
+              <br />これまでの積み上げを無駄にするのが怖かったり
+              <br />経済状況が理由で
+              <br />なかなか環境を変えることができない学生が
+              <br />未来に向かって一歩を踏み出せるように支援をする団体です。<br />
+              <br />私たちは、自信をなくしている
+              <br />あなたの才能、魅力を必ず伸ばせる自信があります。
+            </p>
+          </div>
+          <div className="col">
+            <img src="/static/S__6225944.jpg" className={styles.gazo4} alt="" />
+          </div>
         </div>
-        <div className={styles.ImgContainer}>
-          <img src="/static/S__6225944.jpg" alt="" />
-          <p>nanariとは
-            <br />Nanariは、大学で自分の夢を見失ってしまった学生
-            <br />人間関係がこじれて大学にいけなくなってしまった学生<br />
-            <br />自分のゆありたいことがみつかったのに
-            <br />大学生活に追われて動きが取れない学生<br />
-            <br />今の環境が自分に向いてないと気がついたのに、
-            <br />これまでの積み上げを無駄にするのが怖かったり
-            <br />経済状況が理由で
-            <br />なかなか環境を変えることができない学生が
-            <br />未来に向かって一歩を踏み出せるように支援をする団体です。<br />
-            <br />私たちは、自信をなくしている
-            <br />あなたの才能、魅力を必ず伸ばせる自信があります。
-          </p>
-        </div>
-
       </div >
       {/*ブログ表示↓*/}
-      <p>Our Story</p>
+      <p className={styles.OurStory}>Our Story</p>
       <div>
         <ul>
           {blog.map((blog) => (
@@ -99,7 +113,7 @@ export default function Home({ blog }) {
       {/*ブログ表示↑*/}
 
       {/* 認証↓ */}
-      <div className="alert alert-primary text-center">
+      {/*<div className="alert alert-primary text-center">
         <h5 className="mb-4">{message}</h5>
         <p className="h6 text-left">
           uid: {auth.currentUser != null ? auth.currentUser.uid : ''}<br />
@@ -107,9 +121,11 @@ export default function Home({ blog }) {
           email: {auth.currentUser != null ? auth.currentUser.email : ''}<br />
           phoneNumber: {auth.currentUser != null ? auth.currentUser.phoneNumber : ''}
         </p>
-      </div>
+          </div>*/}
       {/* 認証↑ */}
-    </div>
+
+      <Footer />
+    </div >
 
   );
 }
